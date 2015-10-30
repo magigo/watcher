@@ -72,9 +72,10 @@ class CloudWatchPublisher(object):
 class HeartBeatPublisher(CloudWatchPublisher):
     """
     信条信息发布器, 本类会取得磁盘剩余空间作为信条信息发布
-    数据指标为'Disk Remain'
-    数据维度包括'Instance ID'和'Disk'
-    数据点是磁盘剩余的百分比, 单位'Percent'
+
+    * 数据指标为'Disk Remain'
+    * 数据维度包括'Instance ID'和'Disk'
+    * 数据点是磁盘剩余的百分比, 单位'Percent'
     """
     def __init__(self, namespace):
         super(HeartBeatPublisher, self).__init__(namespace)
@@ -83,6 +84,7 @@ class HeartBeatPublisher(CloudWatchPublisher):
     def _get_disk_info(self):
         """
         获取磁盘剩余容量信息
+
         :return: list, 每个磁盘分区剩余容量的列表
         """
         status, output = commands.getstatusoutput("df -h")
@@ -99,7 +101,9 @@ class HeartBeatPublisher(CloudWatchPublisher):
     def _publish_disk_info(self, disk_info):
         """
         发布磁盘剩余量的信息作为心跳信息
+
         :param disk_info: object[DiskInfo], 磁盘剩余信息的具名元组对象
+
         :return: 不重要
         """
         data = {"Instance ID": self.ec2_id, "Disk": disk_info.Filesystem}
@@ -113,7 +117,8 @@ class HeartBeatPublisher(CloudWatchPublisher):
     def publish_heartbeat(self):
         """
         对外暴露的接口, 发布心跳信息
-        :return:
+
+        :return: None
         """
         for disk_info in self._get_disk_info():
             self._publish_disk_info(disk_info)
@@ -125,6 +130,7 @@ class HeartBeatPublisher(CloudWatchPublisher):
 def start():
     """
     启动一个后台线程发送心跳数据
+
     :return:
     """
     import threading
