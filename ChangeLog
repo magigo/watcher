@@ -1,6 +1,8 @@
 CHANGES
 =======
 
+* add doc
+* add doc and cloudwatch_publisher
 * first build
 * update setpu.cfg
 * init project
