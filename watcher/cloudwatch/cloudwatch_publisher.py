@@ -7,10 +7,11 @@
 #. 自动的发布心跳
 #. 发布自定义指标
 """
-
+from future import standard_library
+standard_library.install_aliases()
 from time import sleep
 from datetime import datetime
-import commands
+from subprocess import getstatusoutput
 from collections import namedtuple
 from subprocess import check_output
 import sys
@@ -77,6 +78,7 @@ class HeartBeatPublisher(CloudWatchPublisher):
     * 数据维度包括'Instance ID'和'Disk'
     * 数据点是磁盘剩余的百分比, 单位'Percent'
     """
+
     def __init__(self, namespace):
         super(HeartBeatPublisher, self).__init__(namespace)
         self.DiskInfo = namedtuple('DiskInfo', 'Filesystem Size Used Avail Used_percentage Mounted_on')
@@ -87,7 +89,7 @@ class HeartBeatPublisher(CloudWatchPublisher):
 
         :return: list, 每个磁盘分区剩余容量的列表
         """
-        status, output = commands.getstatusoutput("df -h")
+        status, output = getstatusoutput("df -h")
         disk_info_list = []
         if not status:
             lines = output.split('\n')
@@ -123,7 +125,7 @@ class HeartBeatPublisher(CloudWatchPublisher):
         for disk_info in self._get_disk_info():
             self._publish_disk_info(disk_info)
 
-    class NoDiskInfoError(StandardError):
+    class NoDiskInfoError(Exception):
         pass
 
 

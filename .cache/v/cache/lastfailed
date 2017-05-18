@@ -1,0 +1,4 @@
+{
+  "watcher/cloudwatch/tests/test_cloudwatch_publisher.py": true, 
+  "watcher/logging/tests/test_easy_logging.py": true
+}
