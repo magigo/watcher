@@ -1,6 +1,8 @@
 CHANGES
 =======
 
+* support python 3.x
+* update requirements.txt
 * update doc
 * add doc
 * add doc and cloudwatch_publisher

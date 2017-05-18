@@ -1,4 +1,5 @@
-boto==2.33.0
-boto3==1.1.2
-botocore==0.108.0
+future
+boto
+boto3
+botocore
 pytz

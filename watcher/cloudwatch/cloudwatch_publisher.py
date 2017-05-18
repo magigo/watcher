@@ -5,8 +5,11 @@
 这个模块负责处理CloudWatch数据点的发布
 
 #. 自动的发布心跳
-#. 发布自定义指标
+#. 发布自定义指标 
 """
+# todo 在logging上添加钩子，自动发布日志到CloudWatch log模块
+# todo 使用配置，但是不使用独立的配置文件
+
 from future import standard_library
 standard_library.install_aliases()
 from time import sleep
@@ -22,7 +25,7 @@ import pytz
 tz = pytz.timezone('Asia/Shanghai')
 utc_tz = pytz.utc
 cst_time_now = datetime.now(tz)
-
+region = 'cn-north-1'
 
 class CloudWatchPublisher(object):
     """
@@ -37,7 +40,7 @@ class CloudWatchPublisher(object):
 
         :return: None
         """
-        self.cw_conn = cloudwatch.connect_to_region('cn-north-1')
+        self.cw_conn = cloudwatch.connect_to_region(region)
         if str(sys.platform).startswith('darwin'):
             self.ec2_id = '00000000'
         else:
