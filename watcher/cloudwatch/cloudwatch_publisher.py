@@ -11,6 +11,7 @@
 # todo 使用配置，但是不使用独立的配置文件
 
 from future import standard_library
+
 standard_library.install_aliases()
 from time import sleep
 from datetime import datetime
@@ -26,6 +27,7 @@ tz = pytz.timezone('Asia/Shanghai')
 utc_tz = pytz.utc
 cst_time_now = datetime.now(tz)
 region = 'cn-north-1'
+
 
 class CloudWatchPublisher(object):
     """
