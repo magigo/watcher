@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+* update doc
+* delete useless folder
+* delete useless folder
+* change readme
+* bug fix
 * support python 3.x
 * update requirements.txt
 * update doc

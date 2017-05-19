@@ -134,7 +134,7 @@ class HeartBeatPublisher(CloudWatchPublisher):
         pass
 
 
-def start():
+def start(app_name):
     """
     启动一个后台线程发送心跳数据
 
@@ -150,7 +150,6 @@ def start():
             sleep(60)
 
     cwp = HeartBeatPublisher('ServiceHeartBeat')
-    app_name = sys.argv[0].split('/')[-1].split('.', 1)[0]
 
     threads = []
     t1 = threading.Thread(target=main, args=(app_name,))
