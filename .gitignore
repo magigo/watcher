@@ -8,6 +8,8 @@
 .DS_Store
 .coverage
 .tox/
+.cache/
+.eggs/
 build/
 docs/.build/
 dist/
