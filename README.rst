@@ -24,7 +24,9 @@ Python2.7,Python3.5,Python3.6
 
 example
 =======
-```python
+.. code-block:: python
+   :emphasize-lines: 3,5
+
 from watcher import CloudWatchLogHandler
 
 LOG = logging.getLogger('Spider')
@@ -39,4 +41,3 @@ LOG.addHandler(CloudWatchLogHandler())
 
 
 LOG.info('start')
-```
