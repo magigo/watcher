@@ -22,3 +22,6 @@ support
 =======
 Python2.7,Python3.5,Python3.6
 
+example
+=======
+./example/sample.py
