@@ -26,7 +26,7 @@ import pytz
 tz = pytz.timezone('Asia/Shanghai')
 utc_tz = pytz.utc
 cst_time_now = datetime.now(tz)
-region = 'cn-north-1'
+region = 'us-west-1'
 
 
 class CloudWatchPublisher(object):
@@ -118,6 +118,7 @@ class HeartBeatPublisher(CloudWatchPublisher):
             value = int(disk_info.Used_percentage[:-1])
         else:
             raise self.NoDiskInfoError()
+        print(data)
         resp = self.publish_data_point('Disk Remain', value, 'Percent', data)
         return resp
 
